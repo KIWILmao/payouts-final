@@ -2,8 +2,10 @@ FROM node:20
 
 
 ARG DATABASE_URL
+ARG NEXTAUTH_URL
 
 ENV DATABASE_URL=$DATABASE_URL
+ENV NEXTAUTH_URL=$NEXTAUTH_URL
 
 WORKDIR /app
 
@@ -17,7 +19,7 @@ RUN npm install
 
 RUN cd packages/db && DATABASE_URL=$DATABASE_URL && npx prisma migrate dev && npx prisma generate && cd ../..
 
-RUN cd ./apps/user-app && npm run build
+RUN cd ./apps/user-app && NEXTAUTH_URL=$NEXTAUTH_URL && npm run build
 
 EXPOSE 3000
 

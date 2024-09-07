@@ -27,6 +27,7 @@ jobs:
         tags: kiwilmao/payouts:latest
         build-args: |
           DATABASE_URL=${{ secrets.DATABASE_URL }}
+          NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }}
 
     - name: Verify Pushed Image
       run: docker pull kiwilmao/payouts:latest
